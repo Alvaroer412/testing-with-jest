@@ -18,3 +18,6 @@ exports.peek = function () {
 }
 
 
+exports.size = function () {
+    return stack.length;
+};

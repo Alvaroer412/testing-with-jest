@@ -9,10 +9,20 @@ window.onload = function () {
     var display = document.getElementById('top_of_stack');
 
     pop.addEventListener("click", function() {
-        var text = "Tog bort " + stack.pop();
-        alert(text);
-    });
+        if (stack.size() === 0) {
+            alert("Stacken är redan tom!");
+            return;
+        }
 
+        let popped = stack.pop()
+        if (stack.size() === 0) {
+            display.innerHTML = "n/a";
+        } else {
+            display.innerHTML = stack.peek();
+        }
+
+        alert("Tog bort " + popped);
+});
     push.addEventListener("click", function() {
         var x = prompt("Vad ska vi lägga på stacken?");
         stack.push(x);
@@ -23,3 +33,5 @@ window.onload = function () {
         display.innerHTML = stack.peek();
     });
 };
+
+

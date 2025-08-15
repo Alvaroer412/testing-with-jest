@@ -3,7 +3,7 @@ const stack = require('../src/stack');
 test('pop on stack with one element removes that element and returns undefined', () => {
     stack.push(1);
     expect(stack.pop()).toBe(1);
-    expect(stack.peek()).toBe(1); //Medvetet fel
+    expect(stack.peek()).toBeUndefined();
 });
 
 
@@ -25,6 +25,3 @@ test('peek on stack with two or more elements returns the top element', () => {
     expect(stack.peek()).toBe(42);
 
 });
-
-
-//     expect(stack.peek()).toBeUndefined();

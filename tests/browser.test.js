@@ -14,6 +14,10 @@ console.log(fileUnderTest);
     driver = await new Builder().forBrowser('firefox').build();
     await driver.get(fileUnderTest);
 });
+// Laddar om sidan innan varje test
+beforeEach(async () => {
+    await driver.get(fileUnderTest); 
+});
 
 // Allra sist avslutar vi Firefox igen
 afterAll(async() => {
@@ -47,9 +51,12 @@ describe('Clicking "Poppa från stacken" with one element', () => {
         await pop.click(); // Pops äpplen
 
         let popAlert = await driver.switchTo().alert();
-        await popAlert.accept(); // Accepts alert (Otherwise test errors)
+        await popAlert.accept(); // Accepts alert 
 
         let stack = await driver.findElement(By.id('top_of_stack')).getText();
         expect(stack).toEqual("n/a"); //Expects "n/a"
     });
 });
+
+
+
