@@ -34,3 +34,22 @@ describe('Clicking "Pusha till stacken"', () => {
         await alert.accept();
     });
 });
+
+describe('Clicking "Poppa från stacken" with one element', () => {
+    it('should remove the element and show "n/a"', async () => {
+        let push = await driver.findElement(By.id('push'));
+        await push.click();
+        let alert = await driver.switchTo().alert();
+        await alert.sendKeys("Äpplen"); //Pushes "Äpplen"
+        await alert.accept();
+
+        let pop = await driver.findElement(By.id('pop'));
+        await pop.click(); // Pops äpplen
+
+        let popAlert = await driver.switchTo().alert();
+        await popAlert.accept(); // Accepts alert (Otherwise test errors)
+
+        let stack = await driver.findElement(By.id('top_of_stack')).getText();
+        expect(stack).toEqual("n/a"); //Expects "n/a"
+    });
+});
